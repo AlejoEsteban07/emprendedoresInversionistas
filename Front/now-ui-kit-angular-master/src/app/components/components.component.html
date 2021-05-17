@@ -1,0 +1,86 @@
+<div class="wrapper">
+    <div class="page-header clear-filter" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');">
+
+        </div>
+        <div class="container">
+            <div class="content-center brand">
+                <img class="n-logo" src="assets/img/now-logo.png" alt="">
+                <h1 class="h1-seo">Bienvenidos</h1>
+                <h3>En esta sección encontraras nuestros Productos</h3>
+            </div>
+            <h6 class="category category-absolute">Coded by
+                <a href="https://www.creative-tim.com" target="_blank">
+                    <img src="assets/img/creative-tim-white-slim2.png" class="creative-tim-logo" />
+                </a>.</h6>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="section section-tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 ml-auto col-xl-6 mr-auto" *ngFor="let producto of listadoProductos">
+                        <p class="category">{{producto.nombre}}</p>
+                        <div class="card">
+                            <div class="nav-tabs-navigation">
+                                <div class="nav-tabs-wrapper">
+                                    <ngb-tabset [justify]="'center'" class="text-center">
+                                        <ngb-tab>
+                                            <ng-template ngbTabTitle>
+                                                <i class="now-ui-icons objects_umbrella-13"></i> Descripción
+                                            </ng-template>
+                                            <ng-template ngbTabContent>
+                                                <p>{{producto.descripcion}}</p>
+                                            </ng-template>
+                                        </ngb-tab>
+                                        <ngb-tab>
+                                            <ng-template ngbTabTitle>
+                                                <i class="now-ui-icons shopping_cart-simple"></i> Precio
+                                            </ng-template>
+                                            <ng-template ngbTabContent>
+                                                <p> Aqui encontraras el valor de nuestro producto </p>
+                                            </ng-template>
+                                        </ngb-tab>
+                                    </ngb-tabset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section section-contact-us text-center">
+            <div class="container">
+                <h2 class="title">Contactanos</h2>
+                <div class="row">
+                    <div class="col-lg-6 text-center col-md-8 ml-auto mr-auto">
+                        <div class="input-group input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                              <i class="now-ui-icons users_circle-08"></i>
+                          </span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Nombres" (focus)="focus=true" (blur)="focus=false">
+                        </div>
+                        <div class="input-group input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                <i class="now-ui-icons ui-1_email-85"></i>
+                          </span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Correo" (focus)="focus1=true" (blur)="focus1=false">
+                        </div>
+                        <div class="textarea-container">
+                            <textarea class="form-control" name="name" rows="4" cols="80" placeholder="Escribe un mensaje..."></textarea>
+                        </div>
+                        <div class="send-button">
+                            <a class="btn btn-primary btn-round btn-block btn-lg" (click)="consultaProductos()">Enviar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

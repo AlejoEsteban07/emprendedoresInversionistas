@@ -1,0 +1,94 @@
+<div class="wrapper">
+    <div class="page-header page-header-small" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/bg5.jpg') ;">
+        </div>
+        <div class="container">
+            <div class="content-center">
+                <div class="photo-container">
+                    <img src="assets/img/ryan.jpg" alt="">
+                </div>
+                <h3 class="title">{{dataUsuario}}</h3>
+                <p class="category">Perfil</p>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section section-contact-us text-center" *ngIf="!consultarProducto && !agregaProducto">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center col-md-8 ml-auto mr-auto">
+                        <div class="send-button">
+                            <a class="btn btn-primary btn-round btn-block btn-lg" (click)="agregarProducto()">Agregar Producto</a>
+                        </div>
+
+                        <div class="send-button">
+                            <a class="btn btn-primary btn-round btn-block btn-lg" (click)="consultarProductos()">Consultar Productos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section section-contact-us text-center" *ngIf="agregaProducto">
+            <div class="container">
+                <p *ngIf="productoAgregado">
+                    <ngb-alert [dismissible]="false">
+                        <strong>Exito!</strong> Se creo correctamente el producto.
+                    </ngb-alert>
+                </p>
+                <h2 class="title">Agregar producto</h2>
+                <div class="row">
+                    <div class="col-lg-6 text-center col-md-8 ml-auto mr-auto">
+                        <div class="input-group input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                            <input type="text" class="form-control" #nombreProducto placeholder="Nombre Producto" (focus)="focus=true" (blur)="focus=false">
+                        </div>
+                        <div class="input-group input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+                            <input type="text" class="form-control" #descripcion placeholder="Descripción" (focus)="focus1=true" (blur)="focus1=false">
+                        </div>
+                        <div class="send-button">
+                            <a class="btn btn-primary btn-round btn-block btn-lg" (click)="agregar(nombreProducto.value,descripcion.value)">Agregar</a>
+                        </div>
+                        <div class="send-button">
+                            <a class="btn btn-primary btn-round btn-block btn-lg" (click)="volver()">Volver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section section-contact-us text-center">
+            <div class="container" *ngIf="consultarProducto">
+                <div class="row">
+                    <div class="col-md-10 ml-auto col-xl-6 mr-auto" *ngFor="let producto of listadoProductos">
+                        <p class="category" *ngIf="!editarProducto">{{producto.nombre}}</p>
+                        <input *ngIf="editarProducto" [(ngModel)]="producto.nombre" type="text" placeholder="Ingrese primer valor">
+                        <div class="card">
+                            <div class="nav-tabs-navigation">
+                                <div class="nav-tabs-wrapper">
+                                    <ngb-tabset [justify]="'center'" class="text-center">
+                                        <ngb-tab>
+                                            <ng-template ngbTabTitle>
+                                                <i class="now-ui-icons objects_umbrella-13"></i> Descripción
+                                            </ng-template>
+                                            <ng-template ngbTabContent>
+                                                <p *ngIf="!editarProducto">{{producto.descripcion}}</p>
+                                                <input *ngIf="editarProducto" [(ngModel)]="producto.descripcion" type="text" placeholder="Ingrese primer valor">
+                                            </ng-template>
+                                        </ngb-tab>
+                                    </ngb-tabset>
+                                    <button class="btn btn-primary btn-round" type="button" (click)="modificarproducto()" *ngIf="!editarProducto">Editar Producto</button>
+                                    <button class="btn btn-primary btn-round" type="button" (click)="eliminar(producto.idProducto)" *ngIf="!editarProducto">Eliminar Producto</button>
+                                    <button class="btn btn-primary btn-round" type="button" (click)="editar(producto.idProducto,producto.nombre,producto.descripcion)" *ngIf="editarProducto">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="send-button">
+                    <a class="btn btn-primary btn-round btn-block btn-lg" (click)="volver()">Volver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
